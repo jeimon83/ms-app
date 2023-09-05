@@ -1,16 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from 'react';
+import getAPICustomers from "./get_api_customers";
 
-const apiUrl = process.env.REACT_APP_API_URL
-
-function getAPICustomers() {
-  return axios.get(apiUrl + "/customers").then((response) => response.data)
-  .catch((error) => {
-    console.error("Error fetching data: ", error);
-    return [];
-  });
-}
 
 function Customers() {
   const [customers, setCustomers] = useState([])

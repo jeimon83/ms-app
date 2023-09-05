@@ -1,17 +1,6 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from 'react';
-
-const apiUrl = process.env.REACT_APP_API_URL
-console.log(apiUrl)
-
-function getAPIServices() {
-  return axios.get(apiUrl + "/services").then((response) => response.data)
-  .catch((error) => {
-    console.error("Error fetching data: ", error);
-    return [];
-  });
-}
+import getAPIServices from "./get_api_services";
 
 function Services() {
   const [services, setServices] = useState([])

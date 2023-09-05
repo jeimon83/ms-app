@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import Customers from '../components/customers';
-import Services from '../components/services';
+import Customers from '../components/customers/customers';
+import Services from '../components/services/services';
 
 function AppRoutes() {
   return (

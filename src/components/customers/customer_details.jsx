@@ -11,7 +11,7 @@ function CustomerDetails() {
     const fetch_customer = async () => {
       try {
         const data = await getAPICustomerId(id);
-        if (data.ok) {
+        if (data.name.length > 0) {
           setCustomer(data);
         } else {
           navigate("/not_found");

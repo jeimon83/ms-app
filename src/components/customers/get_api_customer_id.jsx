@@ -9,4 +9,4 @@ function getAPICustomerId(id) {
   });
 }
 
-export default getAPICustomers;
+export default getAPICustomerId;

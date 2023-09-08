@@ -6,7 +6,8 @@ function Navbar() {
       <nav className="navbar" role="navigation" aria-label="main navigation" style={{borderBottom: "2px solid #e0e5ea", marginBottom: "20px"}}>
         <div className="navbar-brand">
           <a className="navbar-item" href="https://www.mundosatelital.com.ar">
-            <img src="logo2.png" width="auto" height="60" alt="logo de mundo satelital"/>
+            <img src="logo2.png" width="auto" height="60" 
+            alt="logo de mundo satelital" style={{marginLeft: "-10px"}}/>
             <h1 className="title" style={{fontSize: "24px", marginLeft: "16px", fontWeight: "700", alignItems: "center"}}>Mundo Satelital</h1>
           </a>
 
@@ -34,9 +35,6 @@ function Navbar() {
               <div className="navbar-dropdown">
                 <Link className="navbar-item" to="/customers">
                   All customers
-                </Link>
-                <Link className="navbar-item" to="/customers/1">
-                  Customer 1
                 </Link>
                 <Link className="navbar-item" to="/customers/new">
                   New customer

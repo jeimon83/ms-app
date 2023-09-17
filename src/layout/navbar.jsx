@@ -65,9 +65,43 @@ function Navbar() {
               </div>
             </div>
 
-            <a className="navbar-item" href="/">
-              Providers
-            </a>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link" href="/">
+                Providers
+              </a>
+
+              <div className="navbar-dropdown">
+                <Link className="navbar-item" to="/providers">
+                  All providers
+                </Link>
+                <Link className="navbar-item" to="/providers/new">
+                  New provider
+                </Link>
+                <hr className="navbar-divider" />
+                <a className="navbar-item" href="/">
+                  ########
+                </a>
+              </div>
+            </div>
+
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link" href="/">
+                Antennas
+              </a>
+
+              <div className="navbar-dropdown">
+                <Link className="navbar-item" to="/antennas">
+                  All antennas
+                </Link>
+                <Link className="navbar-item" to="/antennas/new">
+                  New antenna
+                </Link>
+                <hr className="navbar-divider" />
+                <a className="navbar-item" href="/">
+                  ########
+                </a>
+              </div>
+            </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link" href="/">

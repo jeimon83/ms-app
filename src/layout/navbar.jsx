@@ -35,15 +35,9 @@ function Navbar() {
                 <Link className="navbar-item" to="/customers">
                   All customers
                 </Link>
-                <Link className="navbar-item" to="/customers/1">
-                  Customer 1
-                </Link>
                 <Link className="navbar-item" to="/customers/new">
                   New customer
                 </Link>
-                <a className="navbar-item" href="/">
-                  Edit customer
-                </a>
                 <hr className="navbar-divider" />
                 <a className="navbar-item" href="/">
                   ########
@@ -60,12 +54,9 @@ function Navbar() {
                 <Link className="navbar-item" to="/services">
                   All services
                 </Link>
-                <Link className="navbar-item" to="/customers/new">
+                <Link className="navbar-item" to="/services/new">
                   New service
                 </Link>
-                <a className="navbar-item" href="/">
-                  Edit service
-                </a>
                 <hr className="navbar-divider" />
                 <a className="navbar-item" href="/">
                   ########

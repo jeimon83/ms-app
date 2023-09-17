@@ -16,7 +16,7 @@ function App() {
         <main>
           <AppRoutes />
         </main>
-        <footer>
+        <footer className='footer'>
           <Footer />
         </footer>
       </div>

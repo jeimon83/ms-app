@@ -4,10 +4,12 @@ import getAPICustomers from "./get_api_customers";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import apiUrl from "../../api_routes/api_url";
+import { useCustomerContext } from "../../contexts/CustomerContext";
 
 function Customers() {
   const [customers, setCustomers] = useState([])
   const navigate = useNavigate()
+  const { setCustomerData } = useCustomerContext()
 
   useEffect(() => {
     let mounted_customers = true
@@ -27,6 +29,11 @@ function Customers() {
     }).catch((error) => {
       console.error("Error deleting customer: ", error);
     })
+  }
+
+  const newAntenna = (obj) => {
+    setCustomerData(obj)
+    navigate('/antennas/new')
   }
 
   return (
@@ -53,6 +60,9 @@ function Customers() {
                   <td>{obj.phone}</td>
                   <td>{obj.email}</td>
                   <td>
+                    <button className="button is-dark is-responsive" onClick={() => newAntenna(obj)} style={{marginRight: "5px"}}>
+                      <span>New Antenna</span>
+                    </button>
                     <button className="button is-info is-responsive" to={`/customer/${obj.id}`} style={{marginRight: "5px"}}>
                       <span>Show</span>
                     </button>

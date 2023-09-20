@@ -19,14 +19,20 @@ function Antennas() {
 
   const deleteAntenna = (id) => {
     axios.delete(apiUrl() + "/antennas/" + id).then((response) => {
-      if (response.status === 200) {
-        setAntennas(antennas.filter((obj) => obj.id !== id));
-      } else {
-        navigate("/not_found");
-      }
-    }).catch((error) => {
-      console.error("Error deleting antenna: ", error);
-    })
+      if (response.status === 200)  { setAntennas(antennas.filter((obj) => obj.id !== id)); } 
+      else                          { navigate("/not_found"); }
+    }).catch((error) =>             { console.error("Error deleting antenna: ", error); })
+  }
+
+  const objState = (state) => {
+    if (state === "pending")    { return "Pending" }
+    if (state === "installed")  { return "Installed" }
+    if (state === "active")     { return "Active" }
+    if (state === "inactive")   { return "Inactive" }
+  }
+
+  const showAntenna = (id) => {
+    navigate("/antennas/" + id)
   }
 
   return (
@@ -51,10 +57,11 @@ function Antennas() {
                 <tr key={obj.id}>
                   <td>{obj.cpa}</td>
                   <td>{obj.location}</td>
-                  <td>{obj.customer}</td>
-                  <td>{obj.status}</td>
+                  <td>{obj.customer.name}</td>
+                  <td>{obj.service}</td>
+                  <td>{objState(obj.state)}</td>
                   <td>
-                    <button className="button is-info is-responsive" to={`/antenna/${obj.id}`} style={{marginRight: "5px"}}>
+                    <button className="button is-info is-responsive" onClick={() => showAntenna(obj.id)} style={{marginRight: "5px"}}>
                       <span>Show</span>
                     </button>
                     <button className="button is-danger is-responsive" onClick={() => deleteAntenna(obj.id)}>
@@ -66,7 +73,7 @@ function Antennas() {
             })}
           </tbody>
         </table>
-        <button className="button is-info is-responsive" onClick={() => navigate('/antennas/new')}>New Antenna</button>
+        {/* <button className="button is-info is-responsive" onClick={() => navigate('/antennas/new')}>New Antenna</button> */}
       </div>
     </section> 
   );

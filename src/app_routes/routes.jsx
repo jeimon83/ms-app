@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { CustomerProvider } from '../contexts/CustomerContext';
+
 // home
 import Home from '../components/home';
 
@@ -29,35 +31,37 @@ import NewProvider from '../components/providers/new_provider';
 
 function AppRoutes() {
   return (
-    <Routes>
+    <CustomerProvider>
+      <Routes>
 
-      # home
-      <Route path="/"               element={<Home />} />
+        # home
+        <Route path="/"               element={<Home />} />
 
-      # customers
-      <Route path="/customers"      element={<Customers />} />
-      <Route path="/customers/:id"  element={<CustomerDetails />} />
-      <Route path="/customers/new"  element={<NewCustomer />} />
+        # customers
+        <Route path="/customers"      element={<Customers />} />
+        <Route path="/customers/:id"  element={<CustomerDetails />} />
+        <Route path="/customers/new"  element={<NewCustomer />} />
 
-      # services
-      <Route path="/services"       element={<Services />} />
-      <Route path="/services/:id"   element={<ServiceDetails />} />
-      <Route path="/services/new"   element={<NewService />} />
+        # services
+        <Route path="/services"       element={<Services />} />
+        <Route path="/services/:id"   element={<ServiceDetails />} />
+        <Route path="/services/new"   element={<NewService />} />
 
-      # antennas
-      <Route path="/antennas"       element={<Antennas />} />
-      <Route path="/antennas/:id"   element={<AntennaDetails />} />
-      <Route path="/antennas/new"   element={<NewAntenna />} />
+        # antennas
+        <Route path="/antennas"       element={<Antennas />} />
+        <Route path="/antennas/:id"   element={<AntennaDetails />} />
+        <Route path="/antennas/new"   element={<NewAntenna />} />
 
-      # providers
-      <Route path="/providers"      element={<Providers />} />
-      <Route path="/providers/:id"  element={<ProviderDetails />} />
-      <Route path="/providers/new"  element={<NewProvider />} />
+        # providers
+        <Route path="/providers"      element={<Providers />} />
+        <Route path="/providers/:id"  element={<ProviderDetails />} />
+        <Route path="/providers/new"  element={<NewProvider />} />
 
-      # not found
-      <Route path="*"               element={<NotFound />} />
+        # not found
+        <Route path="*"               element={<NotFound />} />
 
-    </Routes>
+      </Routes>
+    </CustomerProvider>
   );
 }
 

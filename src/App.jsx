@@ -10,15 +10,19 @@ function App() {
   return (
     <Router>
       <div className="App" style={{textAlign: "left"}}>
+
         <header>
           <Navbar />
         </header>
+
         <main>
           <AppRoutes />
         </main>
+
         <footer className='footer'>
           <Footer />
         </footer>
+
       </div>
       </Router>
   );

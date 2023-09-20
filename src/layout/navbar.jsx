@@ -1,42 +1,63 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
+  const [isActive, setisActive] = useState(false);
+  const toggleNav = () => { setisActive(!isActive); }
+  const closeMenu = () => { setisActive(false); }
+
+
+  // const toggleHover = () => { setIsHovered(!isHovered); }
+  // const [isHovered, setIsHovered] = useState(false);
+  // const dropdownClass = `navbar-item has-dropdown ${isHovered ? 'is-hoverable' : ''}`;
+
   return (
-    <section className="section" style={{padding: "1rem 1.5rem"}}>
+    <section 
+      className="section" 
+      style={{padding: "1rem 1.5rem"}}
+    >
       <nav className="navbar" role="navigation" aria-label="main navigation" style={{borderBottom: "2px solid #e0e5ea", marginBottom: "20px"}}>
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://www.mundosatelital.com.ar">
+          <a className="navbar-item" href="/">
             <img src="../logo2.png" width="auto" height="60" 
             alt="logo de mundo satelital" style={{marginLeft: "-10px"}}/>
             <h1 className="title" style={{fontSize: "24px", marginLeft: "16px", fontWeight: "700", alignItems: "center"}}>Mundo Satelital</h1>
           </a>
 
-          <a
-            role="button" className="navbar-burger" aria-label="menu" 
-            aria-expanded="false" data-target="navbarBasicExample" href="/"
+          <p
+            role="button" 
+            className={`navbar-burger ${isActive ? "is-active" : ""}`}
+            aria-label="menu" 
+            aria-expanded={isActive} 
+            data-target="navbarBasic"
+            onClick={toggleNav}
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </p>
         </div>
 
-        <div id="navbarBasicExample" className="navbar-menu" style={{marginLeft: "20px", marginTop: "3px"}}>
+        <div 
+          id="navbarBasic" 
+          className={`navbar-menu ${isActive ? "is-active" : ""}`} 
+          style={{marginLeft: "20px", marginTop: "3px"}}
+        >
+
           <div className="navbar-start">
-            <a className="navbar-item" href="/">
-              Home
-            </a>
 
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" href="/">
+
+            
+              <p className="navbar-link">
                 Customers
-              </a>
+              </p>
 
               <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/customers">
+                <Link className="navbar-item" to="/customers" onClick={closeMenu}>
                   All customers
                 </Link>
-                <Link className="navbar-item" to="/customers/new">
+                <Link className="navbar-item" to="/customers/new" onClick={closeMenu}>
                   New customer
                 </Link>
                 <hr className="navbar-divider" />
@@ -47,15 +68,15 @@ function Navbar() {
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" href="/">
+              <p className="navbar-link">
                 Services
-              </a>
+              </p>
 
               <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/services">
+                <Link className="navbar-item" to="/services" onClick={closeMenu}>
                   All services
                 </Link>
-                <Link className="navbar-item" to="/services/new">
+                <Link className="navbar-item" to="/services/new" onClick={closeMenu}>
                   New service
                 </Link>
                 <hr className="navbar-divider" />
@@ -66,15 +87,15 @@ function Navbar() {
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" href="/">
+              <p className="navbar-link">
                 Providers
-              </a>
+              </p>
 
               <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/providers">
+                <Link className="navbar-item" to="/providers" onClick={closeMenu}>
                   All providers
                 </Link>
-                <Link className="navbar-item" to="/providers/new">
+                <Link className="navbar-item" to="/providers/new" onClick={closeMenu}>
                   New provider
                 </Link>
                 <hr className="navbar-divider" />
@@ -85,17 +106,17 @@ function Navbar() {
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" href="/">
+              <p className="navbar-link">
                 Antennas
-              </a>
+              </p>
 
               <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/antennas">
+                <Link className="navbar-item" to="/antennas" onClick={closeMenu}>
                   All antennas
                 </Link>
-                <Link className="navbar-item" to="/antennas/new">
+                {/* <Link className="navbar-item" to="/antennas/new" onClick={closeMenu}>
                   New antenna
-                </Link>
+                </Link> */}
                 <hr className="navbar-divider" />
                 <a className="navbar-item" href="/">
                   ########
@@ -104,22 +125,22 @@ function Navbar() {
             </div>
 
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" href="/">
+              <p className="navbar-link">
                 More
-              </a>
+              </p>
 
               <div className="navbar-dropdown">
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/" onClick={closeMenu}>
                   About
                 </a>
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/" onClick={closeMenu}>
                   Jobs
                 </a>
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/" onClick={closeMenu}>
                   Contact
                 </a>
                 <hr className="navbar-divider" />
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/" onClick={closeMenu}>
                   Report an issue
                 </a>
               </div>

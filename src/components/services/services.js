@@ -50,7 +50,7 @@ function Services() {
                   <td>{obj.technology[0].toUpperCase() + obj.technology.slice(1)}</td>
                   <td>{obj.bandwidth}</td>
                   <td>
-                    <button className="button is-info is-responsive" to={`/service/${obj.id}`} style={{marginRight: "5px"}}>
+                    <button className="button is-info is-responsive" onClick={() => navigate("/services/" + obj.id)} style={{marginRight: "5px"}}>
                       <span>Show</span>
                     </button>
                     <button className="button is-danger is-responsive" onClick={() => deleteService(obj.id)}>

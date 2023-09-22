@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import apiUrl from "../../api_routes/api_url";
-import getAPIAntennaId from "./get_api_antenna_id";
+import getAPIProviderId from "./get_api_provider_id";
 
-function AntennaDetails() {
+function ProviderDetails() {
   const { id } = useParams();
-  const [antenna, setAntenna] = useState({});
+  const [provider, setProvider] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetch_antenna = async () => {
+    const fetch_provider = async () => {
       try {
-        const data = await getAPIAntennaId(id);
+        const data = await getAPIProviderId(id);
         if (data.cpa.length > 0) {
-          setAntenna(data);
+          setProvider(data);
         } else {
           navigate("/not_found");
         }
       }
       catch (error) {
-        console.error("Error fetching antenna: ", error);
+        console.error("Error fetching provider: ", error);
       }
     };
-    fetch_antenna();
+    fetch_provider();
   }, [id, navigate]);
 
-  if (!antenna) return <h2>Loading...</h2>
+  if (!provider) return <h2>Loading...</h2>
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -36,61 +35,58 @@ function AntennaDetails() {
 
   const handleSaveClick = () => {
     axios
-      .patch(apiUrl() + `/antennas/${id}`, antenna)
+      .patch(apiUrl() + `/providers/${id}`, provider)
       .then((response) => {
         setIsEditing(false);
       })
       .catch((error) => {
-        console.error("Error updating antenna details: ", error);
+        console.error("Error updating provider details: ", error);
       });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAntenna({
-      ...antenna,
+    setProvider({
+      ...provider,
       [name]: value,
     });
   };
+
+  const attributes = { name: "Name" }
+
+  const providerValue = (key) => {
+    if (key === "name") { return provider.name }
+  }
 
 
   return (
     <section className="section">
       <div className="box">
-        <h1 className="title">Antenna Details</h1>
+        <h1 className="title">Provider Details</h1>
         <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <tbody>
+            {Object.entries(attributes).map(([key, value]) => (
             <tr>
-              <th>CPA</th>
+              <th>{value}</th>
               <td>
                 {isEditing ? (
-                  <input
+                  <input className='input' style={{ width: "100%", backgroundColor: "white", color: "blue" }}
                     type="text"
-                    name="cpa"
-                    value={antenna.cpa}
+                    name={key}
+                    value={providerValue(key)}
                     onChange={handleInputChange}
                   />
                 ) : (
-                  antenna.cpa
-                )}
-              </td>
-            </tr>
-            <tr>
-              <th>Location</th>
-              <td>
-                {isEditing ? (
-                  <input
+                  <input className='input'
                     type="text"
-                    name="location"
-                    value={antenna.location}
-                    onChange={handleInputChange}
+                    name={key}
+                    value={providerValue(key)}
+                    readOnly
                   />
-                ) : (
-                  antenna.location
                 )}
               </td>
             </tr>
-            {/* Add more fields for other antenna details */}
+            ))}
           </tbody>
         </table>
         {isEditing ? (
@@ -102,15 +98,16 @@ function AntennaDetails() {
           </button>
         ) : (
           <button
-            className="button is-info"
+            className="button is-info is-responsivee"
             onClick={handleEditClick}
           >
             Edit
           </button>
         )}
+        <button className="button is-dark is-responsive" onClick={() => navigate('/providers')} style={{ marginLeft: "5px" }}>Back to Providers</button>
       </div>
     </section>
   );
 }
 
-export default AntennaDetails;
+export default ProviderDetails;

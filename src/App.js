@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css';
-import "bulma/css/bulma.css";
-import Navbar from './layout/navbar.jsx';
-import Footer from './layout/footer.jsx';
+import Navbar from './layout/navbar.js';
+import Footer from './layout/footer.js';
 import AppRoutes from './app_routes/routes';
+import 'bulma/css/bulma.min.css';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <AppRoutes />
         </main>
 
-        <footer className='footer'>
+        <footer>
           <Footer />
         </footer>
 

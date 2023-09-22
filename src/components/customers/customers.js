@@ -36,6 +36,19 @@ function Customers() {
     navigate('/antennas/new')
   }
 
+  const checkAntennas = (obj) => {
+    if (obj.antennas.length === 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const showCustomer = (id) => {
+    navigate("/customers/" + id)
+  }
+
+
   return (
     <section className="section">
       <div className="box">
@@ -56,19 +69,28 @@ function Customers() {
               return (
                 <tr key={obj.id}>
                   <td>{obj.name}</td>
-                  <td>{obj.address}</td>
+                  <td>{obj.cuit}</td>
                   <td>{obj.phone}</td>
                   <td>{obj.email}</td>
                   <td>
+                    
                     <button className="button is-dark is-responsive" onClick={() => newAntenna(obj)} style={{marginRight: "5px"}}>
                       <span>New Antenna</span>
                     </button>
-                    <button className="button is-info is-responsive" to={`/customer/${obj.id}`} style={{marginRight: "5px"}}>
+
+                    <button className="button is-info is-responsive" onClick={() => showCustomer(obj.id)} style={{marginRight: "5px"}}>
                       <span>Show</span>
                     </button>
-                    <button className="button is-danger is-responsive" onClick={() => deleteCustomer(obj.id)}>
+
+                    {checkAntennas(obj) ? (
+                    <button className="button is-danger is-responsive" onClick={() => deleteCustomer(obj.id)} >
                       <span>Delete</span>
                     </button>
+                    ) : (
+                    <button className="button is-danger is-responsive" disabled>
+                      <span>Delete</span>
+                    </button>
+                    )}
                   </td>
                 </tr>
               );

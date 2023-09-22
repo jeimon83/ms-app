@@ -9,7 +9,7 @@ function Navbar() {
 
   // const toggleHover = () => { setIsHovered(!isHovered); }
   // const [isHovered, setIsHovered] = useState(false);
-  // const dropdownClass = `navbar-item has-dropdown ${isHovered ? 'is-hoverable' : ''}`;
+  // const dropdownclassName = `navbar-item has-dropdown ${isHovered ? 'is-hoverable' : ''}`;
 
   return (
     <section 

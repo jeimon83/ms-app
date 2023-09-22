@@ -38,9 +38,6 @@ function Providers() {
           <thead>
             <tr>
               <th>Name</th>
-{/*               <th>CUIT</th>
-              <th>Phone</th>
-              <th>Email</th> */}
               <th>Actions</th>
             </tr>
           </thead>
@@ -49,11 +46,8 @@ function Providers() {
               return (
                 <tr key={obj.id}>
                   <td>{obj.name}</td>
-{/*                   <td>{obj.address}</td>
-                  <td>{obj.phone}</td>
-                  <td>{obj.email}</td> */}
                   <td>
-                    <button className="button is-info is-responsive" to={`/provider/${obj.id}`} style={{marginRight: "5px"}}>
+                    <button className="button is-info is-responsive" onClick={() => navigate("/providers/" + obj.id)} style={{marginRight: "5px"}}>
                       <span>Show</span>
                     </button>
                     <button className="button is-danger is-responsive" onClick={() => deleteProvider(obj.id)}>

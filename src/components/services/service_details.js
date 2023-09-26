@@ -5,16 +5,18 @@ import axios from "axios";
 import apiUrl from "../../api_routes/api_url";
 
 function ServiceDetails() {
+  // State variables
   const [service, setService] = useState(null);
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
+  // Fetch service details on component mount
   useEffect(() => {
     const fetch_service = async () => {
       try {
         const data = await getAPIServiceId(id);
-        if (data.name.length > 0) {
+        if (data !== null && data !== undefined && data !== "" && data.id !== undefined) {
           setService(data);
         } else {
           navigate("/not_found");

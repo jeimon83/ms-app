@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { CustomerProvider } from '../contexts/CustomerContext';
+import { AuthProvider } from '../contexts/AuthContext';
 
 // home
 import Home from '../components/home';
@@ -28,40 +29,58 @@ import Providers from '../components/providers/providers';
 import ProviderDetails from '../components/providers/provider_details';
 import NewProvider from '../components/providers/new_provider';
 
+// users
+import Login from '../components/users/login';
+import LogOut from '../components/users/logout';
+import SignUp from '../components/users/sign_up';
+
+// auth
+import { RequireAuth } from '../components/auth/RequireAuth';
+
 
 function AppRoutes() {
   return (
-    <CustomerProvider>
-      <Routes>
+    <AuthProvider>
+      <CustomerProvider>
+        <Routes>
+          # home
+        <Route path="/"                 element={<Home />} />
 
-        # home
-        <Route path="/"               element={<Home />} />
+          <Route element={<RequireAuth />}>
 
-        # customers
-        <Route path="/customers"      element={<Customers />} />
-        <Route path="/customers/:id"  element={<CustomerDetails />} />
-        <Route path="/customers/new"  element={<NewCustomer />} />
+            # customers
+            <Route path="/customers"      element={<Customers />}>
+              <Route path=":id"           lement={<CustomerDetails />} />
+              <Route path="new"           element={<NewCustomer />} />
+            </Route>
 
-        # services
-        <Route path="/services"       element={<Services />} />
-        <Route path="/services/:id"   element={<ServiceDetails />} />
-        <Route path="/services/new"   element={<NewService />} />
+          </Route>
 
-        # antennas
-        <Route path="/antennas"       element={<Antennas />} />
-        <Route path="/antennas/:id"   element={<AntennaDetails />} />
-        <Route path="/antennas/new"   element={<NewAntenna />} />
+          # services
+          <Route path="/services"       element={<Services />} />
+          <Route path="/services/:id"   element={<ServiceDetails />} />
+          <Route path="/services/new"   element={<NewService />} />
 
-        # providers
-        <Route path="/providers"      element={<Providers />} />
-        <Route path="/providers/:id"  element={<ProviderDetails />} />
-        <Route path="/providers/new"  element={<NewProvider />} />
+          # antennas
+          <Route path="/antennas"       element={<Antennas />} />
+          <Route path="/antennas/:id"   element={<AntennaDetails />} />
+          <Route path="/antennas/new"   element={<NewAntenna />} />
 
-        # not found
-        <Route path="*"               element={<NotFound />} />
+          # providers
+          <Route path="/providers"      element={<Providers />} />
+          <Route path="/providers/:id"  element={<ProviderDetails />} />
+          <Route path="/providers/new"  element={<NewProvider />} />
 
-      </Routes>
-    </CustomerProvider>
+          # not found
+          <Route path="*"               element={<NotFound />} />
+
+          # users
+          <Route path="/login"          element={<Login />} />
+          <Route path="/logout"         element={<LogOut />} />
+          <Route path="/signup"         element={<SignUp />} />
+        </Routes>
+      </CustomerProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,22 +1,26 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import getAPIServices from "./get_api_services";
 import axios from "axios";
 import apiUrl from "../../api_routes/api_url";
 import { useNavigate } from "react-router-dom";
-
+import { fetchServices } from "../../services/getService";
 
 function Services() {
   const [services, setServices] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
-    let mounted_services = true
-    getAPIServices().then((items) => {
-      if (mounted_services) { setServices(items) }
-    })
-    return () => (mounted_services = false)
-  }, [])
+    const fetch_services = async () => {
+      try {
+        const data = await fetchServices();
+        setServices(data);
+      }
+      catch (error) {
+        console.error("Error fetching services: ", error);
+      }
+    };
+    fetch_services();
+  }, []);
 
   const deleteService = (id) => {
     axios.delete(apiUrl() + "/services/" + id).then((response) => {

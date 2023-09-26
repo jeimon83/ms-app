@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [isActive, setisActive] = useState(false);
   const toggleNav = () => { setisActive(!isActive); }
   const closeMenu = () => { setisActive(false); }
 
+  const logoStyle = {fontSize: "24px", marginLeft: "16px", fontWeight: "700", alignItems: "center"}
+
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  }
 
   // const toggleHover = () => { setIsHovered(!isHovered); }
   // const [isHovered, setIsHovered] = useState(false);
@@ -21,7 +31,7 @@ function Navbar() {
           <a className="navbar-item" href="/">
             <img src="../logo2.png" width="auto" height="60" 
             alt="logo de mundo satelital" style={{marginLeft: "-10px"}}/>
-            <h1 className="title" style={{fontSize: "24px", marginLeft: "16px", fontWeight: "700", alignItems: "center"}}>Mundo Satelital</h1>
+            <h1 className="title" style={logoStyle}>Mundo Satelital</h1>
           </a>
 
           <p
@@ -150,12 +160,27 @@ function Navbar() {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-info is-small" style={{fontSize: "14px"}} href="/">
-                  <strong>Sign up</strong>
-                </a>
-                <a className="button is-dark is-small" style={{fontSize: "14px", fontWeight: "500"}} href="/">
-                  Log in
-                </a>
+              {
+                  !user && (
+                    <a className="button is-info is-small" style={{fontSize: "14px"}} href="/signup">
+                      <strong>Sign up</strong>
+                    </a>
+                  )
+                }
+                {
+                  !user && (
+                    <a className="button is-dark is-small" style={{fontSize: "14px", fontWeight: "500"}} href="/login">
+                      Log in
+                    </a>
+                  )
+                }
+                {
+                  user && (
+                    <a className="button is-dark is-small" style={{fontSize: "14px", fontWeight: "500"}}  onClick={handleLogout} href="/logout">
+                      Log out
+                    </a>
+                  )
+                }
               </div>
             </div>
           </div>

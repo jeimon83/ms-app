@@ -27,7 +27,7 @@ function Login() {
             className="input" 
             type="email" 
             placeholder="Email"
-            value="jaime3@gmail.com"
+            //value="jaime3@gmail.com"
             onChange={e => setEmail(e.target.value)}  
           />
         </div>
@@ -37,7 +37,7 @@ function Login() {
             className="input"
             type="password"
             placeholder="Password"
-            value="Plum3r0z"
+            //value="Plum3r0z"
             onChange={e => setPassword(e.target.value)}
           />
         </div>

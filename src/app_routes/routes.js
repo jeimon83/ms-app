@@ -5,7 +5,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 
 // home
 import Home from '../components/home';
-
+import Welcome from '../components/welcome';
 // not found
 import NotFound from '../components/not_found';
 
@@ -31,8 +31,8 @@ import NewProvider from '../components/providers/new_provider';
 
 // users
 import Login from '../components/users/login';
-import LogOut from '../components/users/logout';
 import SignUp from '../components/users/sign_up';
+import Logout from '../components/users/logout';
 
 // auth
 import { RequireAuth } from '../components/auth/RequireAuth';
@@ -41,45 +41,48 @@ import { RequireAuth } from '../components/auth/RequireAuth';
 function AppRoutes() {
   return (
     <AuthProvider>
+
       <CustomerProvider>
+
         <Routes>
           # home
-        <Route path="/"                 element={<Home />} />
+          <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
 
-          <Route element={<RequireAuth />}>
+          # welcome
+          <Route path="/welcome" element={<RequireAuth><Welcome /></RequireAuth>} />
 
-            # customers
-            <Route path="/customers"      element={<Customers />}>
-              <Route path=":id"           lement={<CustomerDetails />} />
-              <Route path="new"           element={<NewCustomer />} />
-            </Route>
-
-          </Route>
+          # customers
+          <Route path="/customers" element={<RequireAuth><Customers /></RequireAuth>} />
+          <Route path="/customers/:id" element={<RequireAuth><CustomerDetails /></RequireAuth>} />
+          <Route path="/customers/new" element={<RequireAuth><NewCustomer /></RequireAuth>} />
 
           # services
-          <Route path="/services"       element={<Services />} />
-          <Route path="/services/:id"   element={<ServiceDetails />} />
-          <Route path="/services/new"   element={<NewService />} />
+          <Route path="/services" element={<RequireAuth><Services /></RequireAuth>} />
+          <Route path="/services/:id" element={<RequireAuth><ServiceDetails /></RequireAuth>} />
+          <Route path="/services/new" element={<RequireAuth><NewService /></RequireAuth>} />
 
           # antennas
-          <Route path="/antennas"       element={<Antennas />} />
-          <Route path="/antennas/:id"   element={<AntennaDetails />} />
-          <Route path="/antennas/new"   element={<NewAntenna />} />
+          <Route path="/antennas" element={<RequireAuth><Antennas /></RequireAuth>} />
+          <Route path="/antennas/:id" element={<RequireAuth><AntennaDetails /></RequireAuth>} />
+          <Route path="/antennas/new" element={<RequireAuth><NewAntenna /></RequireAuth>} />
 
           # providers
-          <Route path="/providers"      element={<Providers />} />
-          <Route path="/providers/:id"  element={<ProviderDetails />} />
-          <Route path="/providers/new"  element={<NewProvider />} />
+          <Route path="/providers" element={<RequireAuth><Providers /></RequireAuth>} />
+          <Route path="/providers/:id" element={<RequireAuth><ProviderDetails /></RequireAuth>} />
+          <Route path="/providers/new" element={<RequireAuth><NewProvider /></RequireAuth>} />
 
           # not found
-          <Route path="*"               element={<NotFound />} />
+          <Route path="*" element={<RequireAuth><NotFound /></RequireAuth>} />
 
           # users
-          <Route path="/login"          element={<Login />} />
-          <Route path="/logout"         element={<LogOut />} />
-          <Route path="/signup"         element={<SignUp />} />
+          <Route path="/login"            element={<Login />} />
+          <Route path="/signup"           element={<SignUp />} />
+          <Route path="/logout"           element={<Logout />} />
+
         </Routes>
+
       </CustomerProvider>
+
     </AuthProvider>
   );
 }

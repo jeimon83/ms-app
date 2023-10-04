@@ -1,37 +1,55 @@
-import { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
+import axios from "axios";
+import baseUrl from "../api_routes/base_url";
+import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const useAuth = () => useContext(AuthContext);
+
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-
-  const login = (user) => {
-    setUser(user);
-  }
+  const navigate = useNavigate();
 
   const logout = () => {
+    localStorage.removeItem("user");
     setUser(null);
   }
 
-  const authContextValue = {
-    user,
-    login,
-    logout
+  const login = (user) => {
+    axios.post(baseUrl() + "/session", user).then((response) => {
+      if (response.status === 200) {
+        setUser(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/welcome");
+      } else {
+        navigate("/login");
+      }
+    }).catch((error) => {
+      console.error("An error occured: ", error);
+    })
+  }
+
+  const signup = (user) => {
+    axios.post(baseUrl() + "/registration", user).then((response) => {
+      if (response.status === 201) {
+        setUser(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/welcome");
+      } else {
+        navigate("/login");
+      }
+    }).catch((error) => {
+      console.error("Error signing up: ", error);
+    })
   }
 
   return (
-    <AuthContext.Provider value={authContextValue}>
+    <AuthContext.Provider value={{ user, logout, login, signup }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-}
 
 

@@ -1,14 +1,14 @@
-import React from "react";
-import { useAuth } from "../../contexts/AuthContext";
 
-function LogOut() {
-  const { logout } = useAuth();
+
+function Logout() {
 
   return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
-      Log Out
-    </button>
-  );
+    <section className="section">
+      <div className="box">
+        <div className='title'>Thank you! See you soon</div>
+      </div>
+    </section>
+  )
 }
 
-export default LogOut;
+export default Logout;

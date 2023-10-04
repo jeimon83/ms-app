@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../contexts/AuthContext";
 
 function Navbar() {
   const [isActive, setisActive] = useState(false);
@@ -10,11 +9,14 @@ function Navbar() {
 
   const logoStyle = {fontSize: "24px", marginLeft: "16px", fontWeight: "700", alignItems: "center"}
 
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const user = localStorage.getItem("user");
+
+
+  const auth = useAuth();
+  const logout = auth.logout;
+
   const handleLogout = () => {
     logout();
-    navigate("/");
   }
 
   // const toggleHover = () => { setIsHovered(!isHovered); }

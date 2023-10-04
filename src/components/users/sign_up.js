@@ -1,30 +1,32 @@
 import React from 'react';
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm_password, setConfirmPassword] = useState("");
   const auth = useAuth();
-  const navigate = useNavigate();
 
   const handleSignUp= () => {
-    const user = {
-      email: email,
-      password: password,
-      confirm_password: confirm_password
+    if (password !== confirm_password) {
+      alert("Password and password confirmation do not match");
+      return;
     }
 
-    navigate("/");
+    const user = {
+      email: email,
+      password: password
+    }
+
+   auth.signup(user);
+
   }
 
   return (
     <section className="section">
       <div className="box">
-        <div>Login</div>
+        <h1 className='title'>Sign Up</h1>
         <label className="label">Email</label>
         <div className="control">
           <input 

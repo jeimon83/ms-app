@@ -102,7 +102,7 @@ function AntennaDetails() {
           </button>
         ) : (
           <button
-            className="button is-info is-responsivee"
+            className="button is-info is-responsive"
             onClick={handleEditClick}
           >
             Edit

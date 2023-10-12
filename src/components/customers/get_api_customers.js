@@ -1,5 +1,5 @@
 import apiUrl from "../../api_routes/api_url";
-import axios from "axios";
+import axios from "../../axios-config"
 
 function getAPICustomers() {
   return axios.get(apiUrl() + "/customers").then((response) => response.data)

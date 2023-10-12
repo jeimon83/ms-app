@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import getAPIProviders from "./get_api_providers";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axios-config"
 import apiUrl from "../../api_routes/api_url";
 
 function Providers() {

@@ -49,7 +49,7 @@ function SignUp() {
         <div className="control">
           <input
             className="input"
-            type="confirm_password"
+            type="password"
             placeholder="Confirm Password"
             onChange={e => setConfirmPassword(e.target.value)}
           />

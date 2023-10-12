@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import getAPICustomers from "./get_api_customers";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import apiUrl from "../../api_routes/api_url";
 import { useCustomerContext } from "../../contexts/CustomerContext";
+import axios from "../../axios-config"
 
 function Customers() {
   const [customers, setCustomers] = useState([])

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import getAPICustomerId from "./get_api_customer_id";
-import axios from "axios";
+import axios from "../../axios-config"
 import apiUrl from "../../api_routes/api_url";
 
 function CustomerDetails() {

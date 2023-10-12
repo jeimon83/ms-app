@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axios-config";
 import apiUrl from "../../api_routes/api_url";
 import getAPIAntennaId from "./get_api_antenna_id";
 

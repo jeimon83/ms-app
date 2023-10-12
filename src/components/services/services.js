@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import axios from "axios";
+import axios from "../../axios-config"
 import apiUrl from "../../api_routes/api_url";
 import { useNavigate } from "react-router-dom";
 import { fetchServices } from "../../services/getService";

@@ -54,8 +54,8 @@ function Navbar() {
           id="navbarBasic" 
           className={`navbar-menu ${isActive ? "is-active" : ""}`} 
           style={{marginLeft: "20px", marginTop: "3px"}}
-        >
-
+        > 
+      { user && (
           <div className="navbar-start">
 
             <div className="navbar-item has-dropdown is-hoverable">
@@ -158,6 +158,7 @@ function Navbar() {
               </div>
             </div>
           </div>
+        )}
 
           <div className="navbar-end">
             <div className="navbar-item">

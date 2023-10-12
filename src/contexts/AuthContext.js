@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import axios from "axios";
+import axios from "../axios-config";
 import baseUrl from "../api_routes/base_url";
 import { useNavigate } from "react-router-dom";
 

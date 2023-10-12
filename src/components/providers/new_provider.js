@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from "../../axios-config"
 import apiUrl from '../../api_routes/api_url';
 
 function NewProvider() {

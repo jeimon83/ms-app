@@ -13,7 +13,8 @@ function SignUp() {
   const handleSignUp= () => {
     const user = {
       email: email,
-      password: password
+      password: password,
+      password_confirmation: password
     }
 
   axios.post(baseUrl() + "/registration", user).then((response) => {

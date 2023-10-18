@@ -9,8 +9,7 @@ function Navbar() {
 
   const logoStyle = {fontSize: "24px", marginLeft: "16px", fontWeight: "700", alignItems: "center"}
 
-  const user = localStorage.getItem("user");
-
+  const userStorage = localStorage.getItem("user");
 
   const auth = useAuth();
   const logout = auth.logout;
@@ -55,7 +54,7 @@ function Navbar() {
           className={`navbar-menu ${isActive ? "is-active" : ""}`} 
           style={{marginLeft: "20px", marginTop: "3px"}}
         > 
-      { user && (
+      { userStorage && (
           <div className="navbar-start">
 
             <div className="navbar-item has-dropdown is-hoverable">
@@ -164,21 +163,21 @@ function Navbar() {
             <div className="navbar-item">
               <div className="buttons">
               {
-                  !user && (
+                  !userStorage && (
                     <a className="button is-info is-small" style={{fontSize: "14px"}} href="/signup">
                       <strong>Sign up</strong>
                     </a>
                   )
                 }
                 {
-                  !user && (
+                  !userStorage && (
                     <a className="button is-dark is-small" style={{fontSize: "14px", fontWeight: "500"}} href="/login">
                       Log in
                     </a>
                   )
                 }
                 {
-                  user && (
+                  userStorage && (
                     <a className="button is-dark is-small" style={{fontSize: "14px", fontWeight: "500"}}  onClick={handleLogout} href="/logout">
                       Log out
                     </a>

@@ -75,9 +75,9 @@ function AppRoutes() {
           <Route path="*" element={<RequireAuth><NotFound /></RequireAuth>} />
 
           # users
-          <Route path="/login"            element={<Login />} />
-          <Route path="/signup"           element={<SignUp />} />
-          <Route path="/logout"           element={<Logout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/logout" element={<Logout />} />
 
         </Routes>
 

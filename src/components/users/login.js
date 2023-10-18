@@ -1,12 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from "react-router-dom";
+import axios from "../../axios-config";
+import baseUrl from "../../api_routes/base_url";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = useAuth();
+  const [response, setResponse] = useState(null);
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
+
 
   const handleLogin= () => {
     const user = {
@@ -14,20 +20,32 @@ function Login() {
       password: password
     }
 
-   auth.login(user);
+  axios.post(baseUrl() + "/session", user).then((response) => {
+    if (response.status === 200) {
+      setUser(response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("reload", 1);
+      navigate("/welcome")
+    } else {
+      setResponse(response.data)
+    }
+    }).catch((error) => {
+      setResponse(error.response.data.errors)
+    })
   }
 
   return (
     <section className="section">
       <div className="box">
         <h1 className='title'>Please, login to continue!</h1>
+        {response && <div className="notification is-danger">{response}</div>}
+        {}
         <label className="label">Email</label>
         <div className="control">
           <input 
             className="input" 
             type="email" 
             placeholder="Email"
-            //value="jaime3@gmail.com"
             onChange={e => setEmail(e.target.value)}  
           />
         </div>
@@ -37,7 +55,6 @@ function Login() {
             className="input"
             type="password"
             placeholder="Password"
-            //value="Plum3r0z"
             onChange={e => setPassword(e.target.value)}
           />
         </div>

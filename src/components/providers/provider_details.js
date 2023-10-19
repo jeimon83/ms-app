@@ -14,7 +14,7 @@ function ProviderDetails() {
     const fetch_provider = async () => {
       try {
         const data = await getAPIProviderId(id);
-        if (data.cpa.length > 0) {
+        if (data.name.length > 0) {
           setProvider(data);
         } else {
           navigate("/not_found");
@@ -66,7 +66,7 @@ function ProviderDetails() {
         <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <tbody>
             {Object.entries(attributes).map(([key, value]) => (
-            <tr>
+            <tr key={key}>
               <th>{value}</th>
               <td>
                 {isEditing ? (

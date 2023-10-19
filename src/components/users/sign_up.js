@@ -20,6 +20,7 @@ function SignUp() {
   axios.post(baseUrl() + "/registration", user).then((response) => {
     if (response.status === 201) {
       localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("reload", 1);
       navigate("/welcome");
     } else {
       setResponse(response.data)

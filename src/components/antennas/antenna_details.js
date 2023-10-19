@@ -57,9 +57,10 @@ function AntennaDetails() {
   const antennaValue = (key) => {
     if (key === "cpa") { return antenna.cpa }
     if (key === "location") { return antenna.location }
-    if (key === "antenna") { return antenna.customer }
+    if (key === "customer" && antenna.customer != null) { return antenna.customer.name }
     if (key === "service") { return antenna.service }
-    if (key === "status") { return antenna.status }
+    if (key === "status") { return antenna.state }
+    return ""
   }
 
 
@@ -70,7 +71,7 @@ function AntennaDetails() {
         <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <tbody>
             {Object.entries(attributes).map(([key, value]) => (
-            <tr>
+            <tr key={key}>
               <th>{value}</th>
               <td>
                 {isEditing ? (

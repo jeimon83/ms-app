@@ -70,7 +70,7 @@ function CustomerDetails() {
         <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <tbody>
             {Object.entries(attributes).map(([key, value]) => (
-            <tr>
+            <tr key={key}>
               <th>{value}</th>
               <td>
                 {isEditing ? (
